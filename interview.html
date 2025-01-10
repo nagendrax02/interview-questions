@@ -1,0 +1,446 @@
+<!-- // Debouncing // Debouncing is the technique of limiting a function call or
+calling a function at once withing a given time period. It sets a timer and if
+the timer is running the function will be called once the timer is expired but
+in case if the timer is running and a function is called again then it will
+cancel the timer which was about to run the function and sets a new timer with
+the function call -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <input onkeypress="th(event)" />
+  </head>
+  <body></body>
+</html>
+<script>
+  //-------------  given an array [1,[2,3],[4][5],[6],7] and desired out is [1,2,3,4,5,6,7] ------
+
+  // recursion
+  //   const arr = [1,[2,3],[4],[5],[6],7]
+  // const arr2 = []
+  //   function loopArray(arr){
+  //     for(let i=0;i<arr.length;i++){
+  //       if(arr[i]?.length){
+  //         loopArray(arr[i])
+  //       }else{
+  //         arr2.push(arr[i])
+  //       }
+  //     }
+  //     return arr2
+  //   }
+
+  //   console.log(loopArray(arr))
+
+  // ------ question to get sum of first 9 numbers------
+
+  // let n = 9
+
+  // function sumUpToN(n, sum=0){
+
+  //   if(n ==1 ) {
+  //     return  sum
+  //   }
+  //   sum+= n
+  //   n--
+  //  return sumUpToN(n, sum)
+  // }
+
+  // console.log(sumUpToN(n))
+
+  //----------------- find largest number in an array --------
+
+  // let arr = [12, 4, 2, 25, 6];
+
+  // function findLargestNum(arr) {
+  //   let largestNum = arr[0];
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i] > largestNum) {
+  //       largestNum = arr[i];
+  //     }
+  //   }
+  //   return largestNum
+  // }
+
+  // console.log(findLargestNum(arr))
+
+  //  let promise1 = new Promise((res, rej)=>{
+  //     rej("resolved promise 1")
+  //  })
+
+  //  let promise2 = new Promise((res, rej)=>{
+  //   // res("resolved promise 2")
+  //     rej("rejected promise 2")
+  //  })
+
+  //  let promise3 = new Promise((res, rej)=>{
+  //     rej("resolved promise 3")
+  //  })
+
+  //  let promise4 = new Promise((res, rej)=>{
+  //     res("resolved promise 4")
+  //  })
+
+  //  Promise.any([promise1, promise2, promise3, promise4]).then((res)=>{
+
+  //   console.log(res)
+  //  }).catch((error)=>[
+  //   console.log(error)
+  //  ])
+
+  //   let string = "haah"
+  // string = string.split("")
+  //   let left = 0
+  //   let right = string.length-1
+  // let isPallindrome = true
+  //   while(left<=right){
+  //     if(string[left] !== string[right]){
+  //       isPallindrome = false
+  //       break
+  //     }
+  //     left++
+  //     right--
+
+  //   }
+
+  //   console.log(isPallindrome)
+
+  // let arr1 = [1,2,4,2,3]
+  // let arr2 = [2,32,3,4]
+
+  // let arr3 = [...arr1, ...arr2].filter((a,b)=>{
+  //   return a
+  // })
+
+  // console.log("hello", arr3.filter((a,b)=>{
+  //   return a!=b
+  // }))
+
+  //ZOP smart interview 1st rounbd questions
+
+  const p1 = Promise.reject(1)
+
+  // console.log(p1)
+  //  // p1  holds value  1
+  //  // p2 =1
+  //  // p3 = 1
+
+  const p2 = new Promise((resolve) => resolve(p1))
+  const p3 = Promise.resolve(p1)
+
+  // Promise.any([p1, p2, p3]).then((res)=>{
+  //   console.log(res)
+  // }).catch((rej)=>{
+  //   console.log(rej, "rejected")
+  // })
+
+  // const p1 = new Promise((res, rej) => {
+  //   // res(" resolved 1")
+  //   rej("rejected 1");
+  // });
+
+  // const p2 = new Promise((res, rej) => {
+  //   // res(" resolved 2")
+  //   rej("rejected 2");
+  // });
+
+  // const p3 = new Promise((res, rej) => {
+  //   // res("Resolved 3")
+  //   rej("rejected 3");
+  // });
+
+  // Promise.any([p1, p2, p3])
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  //   .catch((err) => {
+  //     console.log(typeof err);
+  //   });
+
+  // p2 = =1
+
+  // const p4 = p2.then(() => new Promise((resolve) => resolve(p3)))
+  // const p5 = p4.then(() => p4)
+
+  // console.log(p1 == p2) // true
+  // console.log(p1 == p3)// true
+  // console.log(p3 == p4)//true
+  // console.log(p4 == p5)// false
+
+  // p2.then((res)=>{
+  //   console.log(res)
+  // })
+
+  // one undefines
+  //one undefined
+
+  // function a(){
+  //   console.log("hi")
+  // }
+
+  // function a(){
+  //   console.log(bye)
+  // }
+
+  // it will print first - hi
+  // undefined
+
+  // a();
+  // console.log(one);
+  // var one = 1;
+  // var one = 2;
+  // function a() {
+  //   console.log("hi");
+  // }
+  // function a() {
+  //   console.log("bye");
+  // }
+  // a();
+  // console.log(one);
+
+  // <style>
+  //     .red {
+  //         color: red;
+  //     }
+  //     .green {
+  //         color: green;
+  //     }
+  //     .blue {
+  //         color: blue;
+  //     }
+  // </style>
+  // <div class="red green blue">Hello World!</div>
+
+  // <style>
+  //     .red {
+  //         color: red;
+  //     }
+  //     .red.green {
+  //         color: green;
+  //     }
+  //     .blue {
+  //         color: blue;
+  //     }
+  // </style>
+
+  // const response = {
+  //   name: "Manu",
+  //   age: 21,
+  //   characteristics: {
+  //     height: "6 feet",
+  //     complexion: "dark",
+  //     hair: "black",
+  //   },
+  //   techStack: {
+  //     language: "Javascript",
+  //     framework: [
+  //       "React",
+  //       "Next",
+  //       {
+  //         name: "Vue.js",
+  //         version: "12",
+  //       },
+  //     ],
+  //   },
+  // };
+
+  // const y = deepClone(response);
+
+  // function deepClone(response){
+
+  //   let y = {...response}
+  //   return y
+  // }
+
+  // response.techStack.framework[2].name = "Express";
+  // console.log(response, y);
+
+  // function fn(event){
+  //   console.log('called', event.target.value)
+  // }
+
+  // let timer = null
+  // function debounceFn(event){
+
+  //   if(timer){
+  //     clearTimeout(timer)
+  //   }
+  // timer =  setTimeout(()=>{
+  //     fn(event)
+  //     timer = null
+  //   }, 2000)
+  // }
+
+  // debounceFn(fn)
+  // debounceFn(fn)
+  // debounceFn(fn)
+  // debounceFn(fn)
+  // debounceFn(fn)
+
+  // async function fetchTodos(){
+  //   const todos = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+  //   console.log(todos)
+  //   todosList = await todos.json()
+
+  //   console.log(todosList)
+
+  // }
+
+  // fetchTodos()
+
+  // console.log(1); // 1
+
+  // setTimeout(() => {
+  //   console.log(2);
+  // }, 1000); //  2
+
+  // setTimeout(() => {
+  //   console.log(3);
+  // }, 0); // 3
+
+  // console.log(4); // 4
+
+  // let  throttleTimer = null
+  // function th(){
+  //   if(throttleTimer == null){
+  //   throttleTimer =   setTimeout(()=>{
+  //       fn()
+  //       throttleTimer = null
+  //     }, 3000)
+  //   }
+  // }
+
+  // function fn(){
+  //   console.log("called")
+  // }
+
+  // th(fn)
+  // th(fn)
+  // th(fn)
+  // th(fn)
+
+  // let X = {jack: 1 };
+  // let output = ( function () {
+  //        delete X.jack;
+  //         return X.jack;
+  // })();
+
+  // console.log(output);
+
+  // x = undefined
+  // function foo() {}
+  //var x undefined
+
+  // var x = 10;
+
+  // function foo() {
+  //   console.log(x);
+  //   var x = 20;
+  // }
+  // foo();
+
+  // const obj = { prop: "old" };
+  // const arr = [obj];
+  // obj.prop = "new";
+  // console.log(arr[0].prop);
+
+  // function job(delay) {
+  //   return new Promise(function (resolve) {
+  //     setTimeout(function () {
+  //       console.log("Resolving", delay);
+  //       resolve("done" + delay);
+  //     }, delay);
+  //   });
+  // }
+
+  // var promise = Promise.all([job(1000), job(2000), job(500), job(1500)]);
+
+  // promise.then(function (data) {
+  //   console.log("All done");
+  //   data.forEach(function (text) {
+  //     console.log(text);
+  //   });
+  // });
+
+  // Resolving 500 -
+  // Resolving 1000
+  //resolving - 1500
+  // resolving 2000
+
+  // All done
+
+  // Done + 500 , 1000, 1500, 2000
+  // done 1000, 2000, 500, 1500 --
+
+  console.log("start");
+
+  const fn = () =>
+    new Promise((resolve, reject) => {
+      console.log(1);
+      resolve("success");
+    });
+
+  console.log("middle");
+
+  fn().then((res) => {
+    console.log(res);
+  });
+
+  console.log("end");
+
+  // start
+  // middle
+  // 1
+  //end
+  // success
+
+  // function createPromise(duration){
+  //   const promise = new Promise((res, rej)=>{
+  //   setTimeout(()=>{
+  //     res("Resolved")
+  //   })
+  // }, duration)
+  // return promise
+  // }
+
+  // async function pause(pauseDuration) {
+  // console.log('1')
+  // // Pause execution for given duration
+
+  // let data = await createPromise(pauseDuration)
+
+  // console.log('2')
+
+  // }
+
+  // pause(3000)
+
+  for (let i = 1; i <= 3; i++) {
+
+    setInterval(function () {
+      console.log("Counting with let:", i);
+    }, 1000);
+
+  }
+
+  //counting with ket: 1
+  //counting with let: 2
+  //counting wuth let: 3
+
+
+  // Chat app design
+  // user message is visible for all the users in chat room
+  // If the user is reading some message , he should be at the same message even if the new message is in chat room
+  //Teachers message should be highlighted
+  // Own messgae should be at the right side
+  // others message should be at the left side
+  //if the new message is in the chat room and user is at the end of chat it will be auto scrolled.
+  // Display the time as one day ago , 3 hrs ago, 3 minutes ago, 5 minutes ago after 24 hours display the actual time other wise display 5 minutes ago 1 minute ago til 24 hrs
+
+  // how will you update the time answer - after  each minute will calculate the time
+
+
+ 
+</script>
